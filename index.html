@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="name">
+            <input id="nameco" type="text">
+            <input id="inputi" type="submit" @click="country()" value="Отправить название страны">
+            <br>
+            <h2>Страна {{countryname}}</h2>
+            Форма правления: {{forma}}
+            <input id="keyff" type="text">
+            <input type="submit" @click="foram" value="Отправить"> <br>
+            <b>Военная мощь:</b> <br>
+            Единиц авиации: {{avian}} тыс.
+            <input id="key3" type="text">
+            <input id="key2" type="submit" @click="avia" value="Отправить">
+            <br>
+            Единиц флота: {{flot}} тысяч
+            <input id="flat" type="text">
+            <input type="submit" @click="floti" value="Отправить">
+            <br>
+            Единиц пехоты: {{peh}} тыс.
+            <input id="pah" type="text">
+            <input type="submit" @click="pih" value="Отправить">
+            <br>
+            Единиц кавалерии: {{kav}} тыс.
+            <input id="vak" type="text">
+            <input type="submit" @click="avk" value="Отправить">
+            <br>
+            <b>Экономика:</b>
+            <br>
+            Золотой запас: {{zol}} единиц золота
+            <input id="zal" type="text">
+            <input type="submit" @click="zli" value="Отправить">
+            <br>
+            Курс валюты: 1 миллион местной валюты = {{kur}} единиц золота
+            <input id="kar" type="text">
+            <input type="submit" @click="kor" value="Отправить">
+            <br>
+            Бюджет страны: {{bud}} миллионов местной валюты
+            <br>
+            <b>Производство:</b>
+            <br>
+            Количество военных заводов: {{zav}}
+            <input id="zuv" type="text">
+            <input type="submit" @click="zev" value="Отправить">
+            <br>
+            Количество военных верфей: {{ver}}
+            <input id="vir" type="text">
+            <input type="submit" @click="vur" value="Отправить">
+            <br>
+            Количество металлургических предприятий: {{metan}}
+            <input id="met" type="text">
+            <input type="submit" @click="tan" value="Отправить">
+            <br>
+            Количество продовольственных предприятий: {{propan}}
+            <input id="pro" type="text">
+            <input type="submit" @click="pan" value="Отправить">
+            <br>
+            <b>Население:</b>
+            <br>
+            Население: {{nasvai}} тысяч
+            <input id="nas" type="text">
+            <input type="submit" @click="vai" value="Отправить">
+            <br>
+            Военно-обязанное население: {{hachey}} тысяч
+            <br>
+            <b>Ход:</b>
+            <br>
+            Необходимо провизии в ход: {{daiedi}} единиц
+            <br>
+            Вырабатывается провизии в ход: {{netedi}} единиц
+            <br>
+            Вырабатывается металлов в ход: {{matan}} единиц
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    function hidden() {
+        document.getElementById('nameco').style.display = 'none';
+        document.getElementById('inputi').style.display = 'none';
+    }
+    function visible() {
+        document.getElementById('nameco').style.opacity = '0';
+        document.getElementById('inputi').style.opacity = '0';
+        setTimeout(hidden, 3000)
+    }
+    new Vue({
+        el: '#name',
+        data: {
+            countryname: localStorage.getItem('namec'),
+            avian: localStorage.getItem('key1'),
+            forma: localStorage.getItem('keyf'),
+            flot: localStorage.getItem('kefl'),
+            peh: localStorage.getItem('paheh'),
+            kav: localStorage.getItem('kava'),
+            zol: localStorage.getItem('zil'),
+            kur: localStorage.getItem('kir'),
+            bud: localStorage.getItem('bad'),
+            zav: localStorage.getItem('ziv'),
+            ver: localStorage.getItem('vra'),
+            metan: localStorage.getItem('eta'),
+            propan: localStorage.getItem('opa'),
+            nasvai: localStorage.getItem('sva'),
+            hachey: localStorage.getItem('che'),
+            daiedi: localStorage.getItem('ied'),
+            netedi: localStorage.getItem('ted'),
+            matan: localStorage.getItem('ata')
+        },
+        methods: {
+            country() {
+                localStorage.setItem('namec', document.getElementById("nameco").value);
+                this.countryname = localStorage.getItem('namec');
+                visible()
+            },
+            avia() {
+                localStorage.setItem('key1', document.getElementById('key3').value)
+                this.avian = localStorage.getItem('key1')
+                y = Number(localStorage.getItem('key1')) + Number(localStorage.getItem('kefl')) + Number(localStorage.getItem('paheh')) + Number(localStorage.getItem('kava'))
+                localStorage.setItem('che', y)
+                this.nasvai = localStorage.getItem('che')
+            },
+            foram() {
+                localStorage.setItem('keyf', document.getElementById('keyff').value)
+                this.forma = localStorage.getItem('keyf')
+            },
+            floti() {
+                localStorage.setItem('kefl', document.getElementById('flat').value)
+                this.flot = localStorage.getItem('kefl')
+                y = Number(localStorage.getItem('key1')) + Number(localStorage.getItem('kefl')) + Number(localStorage.getItem('paheh')) + Number(localStorage.getItem('kava'))
+                localStorage.setItem('che', y)
+                this.nasvai = localStorage.getItem('che')
+            },
+            pih() {
+                localStorage.setItem('paheh', document.getElementById('pah').value)
+                this.peh = localStorage.getItem('paheh')
+                y = Number(localStorage.getItem('key1')) + Number(localStorage.getItem('kefl')) + Number(localStorage.getItem('paheh')) + Number(localStorage.getItem('kava'))
+                localStorage.setItem('che', y)
+                this.nasvai = localStorage.getItem('che')
+            },
+            avk() {
+                localStorage.setItem('kava', document.getElementById('vak').value)
+                this.kav = localStorage.getItem('kava')
+                y = Number(localStorage.getItem('key1')) + Number(localStorage.getItem('kefl')) + Number(localStorage.getItem('paheh')) + Number(localStorage.getItem('kava'))
+                localStorage.setItem('che', y)
+                this.nasvai = localStorage.getItem('che')
+            },
+            zli() {
+                localStorage.setItem('zil', document.getElementById('zal').value)
+                this.zol = localStorage.getItem('zil')
+                x = Number(localStorage.getItem('zil')) / Number(localStorage.getItem('kir'))
+                localStorage.setItem('bad', x)
+                this.bud = localStorage.getItem('bad')
+            },
+            kor() {
+                localStorage.setItem('kir', document.getElementById('kar').value)
+                this.kur = localStorage.getItem('kir')
+                x = Number(localStorage.getItem('zil')) / Number(localStorage.getItem('kir'))
+                localStorage.setItem('bad', x)
+                this.bud = localStorage.getItem('bad')
+            },
+            bid() {
+                x = Number(localStorage.getItem('zil')) / Number(localStorage.getItem('kir'))
+                localStorage.setItem('bad', x)
+                this.bud = localStorage.getItem('bad')
+            },
+            zev() {
+                localStorage.setItem('ziv', document.getElementById('zuv').value)
+                this.zav = localStorage.getItem('ziv')
+            },
+            vur() {
+                localStorage.setItem('vra', document.getElementById('vir').value)
+                this.ver = localStorage.getItem('vra')
+            },
+            tan() {
+                localStorage.setItem('eta', document.getElementById('met').value)
+                this.metan = localStorage.getItem('eta')
+                b = Number(localStorage.getItem('eta')) * 250
+                localStorage.setItem('ata', b)
+                this.matan = localStorage.getItem('ata')
+            },
+            pan() {
+                localStorage.setItem('opa', document.getElementById('pro').value)
+                this.propan = localStorage.getItem('opa')
+                a = Number(localStorage.getItem('opa')) * 1000
+                localStorage.setItem('ted', a)
+                this.netedi = localStorage.getItem('ted')
+            },
+            vai() {
+                localStorage.setItem('sva', document.getElementById('nas').value)
+                this.nasvai = localStorage.getItem('sva')
+                z = Number(localStorage.getItem('sva')) * 3
+                localStorage.setItem('ied', z)
+                this.daiedi = localStorage.getItem('ied')
+            },
+            hey() {
+                y = Number(localStorage.getItem('key1')) + Number(localStorage.getItem('kefl')) + Number(localStorage.getItem('paheh')) + Number(localStorage.getItem('kava'))
+                localStorage.setItem('che', y)
+                this.hachey = localStorage.getItem('che')
+            },
+            edi() {
+                z = Number(localStorage.getItem('sva')) * 3
+                localStorage.setItem('ied', z)
+                this.daiedi = localStorage.getItem('ied')
+            },
+            edai() {
+                a = Number(localStorage.getItem('opa')) * 1000
+                localStorage.setItem('ted', a)
+                this.netedi = localStorage.getItem('ted')
+            },
+            tan() {
+                b = Number(localStorage.getItem('eta')) * 250
+                localStorage.setItem('ata', b)
+                this.matan = localStorage.getItem('ata')
+            }
+        }
+    })
+</script>
+
+</html>
