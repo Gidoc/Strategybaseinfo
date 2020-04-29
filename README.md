@@ -1,0 +1,2 @@
+# Strategybaseinfo
+Просчитывалка
